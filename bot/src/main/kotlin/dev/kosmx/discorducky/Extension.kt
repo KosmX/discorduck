@@ -1,4 +1,4 @@
-package io.github.populus_omnibus.vikbot
+package dev.kosmx.discorducky
 
 import io.github.populus_omnibus.vikbot.api.MaintainEvent
 

@@ -1,16 +1,12 @@
-package io.github.populus_omnibus.vikbot.bot
+package dev.kosmx.discorducky.bot
 
-import io.github.populus_omnibus.vikbot.VikBotHandler
+import dev.kosmx.discorducky.VikBotHandler
 import kotlinx.datetime.*
 import kotlinx.datetime.TimeZone
-import net.dv8tion.jda.api.entities.Member
 import java.time.OffsetDateTime
 import java.time.format.TextStyle
 import java.util.*
 import kotlin.time.Duration
-
-val Member?.isBotAdmin: Boolean
-    get() = this?.roles?.any { it.idLong == VikBotHandler.config.adminId } ?: false
 
 fun Long.toUserTag() = "<@$this>"
 

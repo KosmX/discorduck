@@ -1,7 +1,7 @@
-package io.github.populus_omnibus.vikbot.bot
+package dev.kosmx.discorducky.bot
 
 import com.google.common.reflect.ClassPath
-import io.github.populus_omnibus.vikbot.VikBotHandler
+import dev.kosmx.discorducky.VikBotHandler
 import io.github.populus_omnibus.vikbot.api.annotations.Command
 import io.github.populus_omnibus.vikbot.api.annotations.CommandType
 import io.github.populus_omnibus.vikbot.api.annotations.Module

@@ -12,22 +12,15 @@ dependencies {
     implementation(libs.bundles.kotlinx.serialization)
     implementation(libs.kotlin.reflect)
     implementation("commons-codec:commons-codec:1.18.0")
-    implementation(libs.lavaplayer)
 
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlin.cli)
 
     implementation(libs.kotlinx.coroutines.core)
 
-    implementation(libs.bundles.exposed)
-
-    implementation(libs.exposed.sqlite)
-    implementation(libs.exposed.postgresql)
 
     implementation(libs.okio) // explicitly implement okio
     implementation(libs.json.json)
-    implementation(libs.crypto.fernet)
-    implementation(libs.rssParser)
 
     // Logger stuff
     implementation(libs.slf4j)
@@ -48,7 +41,7 @@ tasks {
     jar{
         manifest {
             attributes (
-                "Main-Class" to "io.github.populus_omnibus.vikbot.Launch"
+                "Main-Class" to "dev.kosmx.discorducky.Launch"
             )
         }
     }

@@ -1,4 +1,4 @@
-package io.github.populus_omnibus.vikbot
+package dev.kosmx.discorducky
 
 import io.github.populus_omnibus.vikbot.api.Event
 import io.github.populus_omnibus.vikbot.api.commands.SlashCommand
@@ -8,9 +8,8 @@ import io.github.populus_omnibus.vikbot.api.interactions.IdentifiableInteraction
 import io.github.populus_omnibus.vikbot.api.interactions.IdentifiableList
 import io.github.populus_omnibus.vikbot.api.interactions.invoke
 import io.github.populus_omnibus.vikbot.api.invoke
-import io.github.populus_omnibus.vikbot.bot.BotConfig
-import io.github.populus_omnibus.vikbot.bot.isBotAdmin
-import io.github.populus_omnibus.vikbot.bot.modules.Syslog
+import dev.kosmx.discorducky.bot.BotConfig
+import dev.kosmx.discorducky.bot.isBotAdmin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -131,7 +130,6 @@ object VikBotHandler : EventListener {
         logger.info("Bot is ready")
 
         Runtime.getRuntime().addShutdownHook(Thread {
-            Syslog.log("Bot is shutting down")
             logger.info("Shutting down")
             timer.cancel()
             shutdownEvent.forEach { it() }
@@ -145,7 +143,6 @@ object VikBotHandler : EventListener {
         }, 1000, 1000)
 
         // Bot is on
-        Syslog.log("Bot is online")
         logger.info("Bot is online")
     }
 
