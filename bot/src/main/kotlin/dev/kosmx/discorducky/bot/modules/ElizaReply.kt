@@ -24,17 +24,22 @@ object ElizaReply {
     fun activate(bot: VikBotHandler) {
 
         bot.messageReceivedEvent[0] = { event ->
-            if (!event.isFromGuild
-                || (event.message.referencedMessage?.author?.isBot == true)
-                || event.message.mentions.usersBag.any { user -> user.isBot }
-                || event.message.contentStripped.contains("Hányszor lehet kitölteni a grafika kvízt")) {
+            when {
+                (event.message.author.isBot) -> EventResult.PASS
+                (!event.isFromGuild
+                        || (event.message.referencedMessage?.author?.isBot == true)
+                        || event.message.mentions.usersBag.any { user -> user.isBot }
+                        || event.message.contentStripped.contains("Hányszor lehet kitölteni a grafika kvízt")) -> {
 
-                val nextLine = chatAgents[event.channel.idLong].transform(event.message.contentDisplay)
+                    val nextLine = chatAgents[event.channel.idLong].transform(event.message.contentDisplay)
 
-                event.message.reply(nextLine).queue()
+                    event.message.reply(nextLine).queue()
 
-                EventResult.CONSUME
-            } else EventResult.PASS
+                    EventResult.CONSUME
+                }
+
+                else -> EventResult.PASS
+            }
         }
 
     }
