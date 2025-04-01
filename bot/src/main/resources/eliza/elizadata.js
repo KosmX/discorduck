@@ -91,7 +91,7 @@ var elizaKeywords = [
   ]]
 */
 
-["Hányszor lehet kitölteni a grafika kvízt", 10 ,[
+["Hányszor lehet kitölteni a grafika kvízt?", 10 ,[
     ["*", [
         "Asszem csak egyszer.",
         "Előadáson mondta.",

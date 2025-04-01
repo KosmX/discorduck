@@ -13,7 +13,7 @@ import java.io.File
 @Serializable
 data class BotConfig(
     val token: String,
-    val botName: String = "Ducky",
+    val botName: String = "Yamrizs",
     val initActivity: String = "quack",
     //var mailChannel: Long,
     val embedColor: Int = 0x03FCC2, //HEX VALUE

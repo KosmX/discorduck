@@ -100,7 +100,8 @@ object VikBotHandler : EventListener {
         val client: JDA = JDABuilder.createDefault(config.token).apply {
             // configure here
             setActivity(Activity.playing(config.initActivity))
-            disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING)
+            disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING, GatewayIntent.DIRECT_MESSAGE_REACTIONS,
+                GatewayIntent.GUILD_MESSAGE_REACTIONS)
             enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_MEMBERS)
             addEventListeners(this@VikBotHandler)

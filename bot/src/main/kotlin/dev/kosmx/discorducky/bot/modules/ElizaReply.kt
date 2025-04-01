@@ -1,6 +1,5 @@
 package dev.kosmx.discorducky.bot.modules
 
-import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import dev.kosmx.discorducky.VikBotHandler
@@ -13,7 +12,7 @@ import kotlin.time.toJavaDuration
 object ElizaReply {
     val chatAgents = CacheBuilder.newBuilder().apply {
         expireAfterAccess(3.hours.toJavaDuration())
-    }.removalListener<Long, ElizaWrapper> { (_, value) -> value.close() }.build(object : CacheLoader<Long, ElizaWrapper>() {
+    }.removalListener<Long, ElizaWrapper> { (_, value) -> value?.close() }.build(object : CacheLoader<Long, ElizaWrapper>() {
         override fun load(key: Long): ElizaWrapper {
             return ElizaWrapper()
         }
@@ -25,7 +24,10 @@ object ElizaReply {
     fun activate(bot: VikBotHandler) {
 
         bot.messageReceivedEvent[0] = { event ->
-            if (!event.isFromGuild || (event.message.referencedMessage?.author?.isBot == true) || event.message.mentions.usersBag.any { user -> user.isBot }) {
+            if (!event.isFromGuild
+                || (event.message.referencedMessage?.author?.isBot == true)
+                || event.message.mentions.usersBag.any { user -> user.isBot }
+                || event.message.contentStripped.contains("Hányszor lehet kitölteni a grafika kvízt")) {
 
                 val nextLine = chatAgents[event.channel.idLong].transform(event.message.contentDisplay)
 
