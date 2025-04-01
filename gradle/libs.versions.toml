@@ -14,7 +14,7 @@ discord-jda = "5.3.1"
 
 junit = "5.12.1"
 
-graalpoly = "24.1.2"
+graalpoly = "24.2.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
