@@ -9,7 +9,6 @@ import io.github.populus_omnibus.vikbot.api.interactions.IdentifiableList
 import io.github.populus_omnibus.vikbot.api.interactions.invoke
 import io.github.populus_omnibus.vikbot.api.invoke
 import dev.kosmx.discorducky.bot.BotConfig
-import dev.kosmx.discorducky.bot.isBotAdmin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -90,21 +89,6 @@ object VikBotHandler : EventListener {
     }
 
     init {
-        ownerServerCommands += object : SlashCommand("stop", "Stops the bot (owner only)", configure = {
-            operator()
-        }) {
-            val forRestart = option("restart", "Stop for restart is true", SlashOptionType.BOOLEAN).default(false)
-
-            override suspend fun invoke(event: SlashCommandInteractionEvent) {
-                if (event.member?.isBotAdmin == true) {
-                    event.reply("stopping").setEphemeral(true).queue {
-                        Runtime.getRuntime().exit(if (event[forRestart]) 0 else 4)
-                    }
-                } else {
-                    event.reply("You are not an admin").setEphemeral(true).queue()
-                }
-            }
-        }
 
         globalCommands += SlashCommand("ping", "quick self test") {
             it.reply("pong\nclient latency: ${it.jda.gatewayPing}").setEphemeral(true).complete()
@@ -194,16 +178,6 @@ object VikBotHandler : EventListener {
 
     private fun registerNonGlobalCommands(event: GuildReadyEvent) {
         val request = event.guild.updateCommands()
-        if (event.guild.idLong in config.ownerServers) {
-            logger.info { "Registering owner server commands on ${event.guild}" }
-            request.addCommands(
-                ownerServerCommands.map {
-                    Commands.slash(it.name, it.description).apply {
-                        it.configure(this)
-                    }
-                }
-            )
-        }
 
         logger.info { "Registering server commands on ${event.guild}" }
         request.addCommands(
