@@ -102,8 +102,7 @@ object VikBotHandler : EventListener {
             setActivity(Activity.playing(config.initActivity))
             disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING, GatewayIntent.DIRECT_MESSAGE_REACTIONS,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS)
-            enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT,
-                GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_MEMBERS)
+            enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
             addEventListeners(this@VikBotHandler)
             setMemberCachePolicy(MemberCachePolicy.ALL)
             setEnableShutdownHook(false)
