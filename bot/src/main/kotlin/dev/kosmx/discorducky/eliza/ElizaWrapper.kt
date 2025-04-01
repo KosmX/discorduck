@@ -9,9 +9,6 @@ class ElizaWrapper(noRandom: Boolean = false): AutoCloseable {
 
     companion object {
         private val cleaner = Cleaner.create()
-        val elizaHelperJS = """
-            
-        """.trimIndent()
 
         val elizajs = ElizaWrapper::class.java.getResourceAsStream("/eliza/elizabot.js").bufferedReader().use { it.readText() }
         val elizadata = ElizaWrapper::class.java.getResourceAsStream("/eliza/elizadata.js").bufferedReader().use { it.readText() }
