@@ -1,6 +1,5 @@
 plugins {
     vikbot.compile
-    vikbot.shadow
     alias(libs.plugins.kotlin.serialization)
 
     vikbot.repos
@@ -47,9 +46,15 @@ tasks {
                 "Main-Class" to "dev.kosmx.discorducky.Launch"
             )
         }
+        dependsOn("copyDependencies")
     }
 
+    register<Copy>("copyDependencies") {
+        from(configurations.runtimeClasspath).into("${layout.buildDirectory.asFile.get()}/dependencies")
+    }
+
+    /*
     shadowJar {
         archiveFileName = "bot-all.jar"
-    }
+    }*/
 }

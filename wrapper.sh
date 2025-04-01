@@ -10,7 +10,7 @@ while true;do
     date
     echo start kotlin bot
     #cp emotes-bot-kt/build/libs/emotes-bot-kt.jar ./
-    java -jar vikbot-kt.jar
+    java -cp <classpath> dev.kosmx.discorducky.Launch
     if [ $? -ne 0 ] #return 4 means requested stop. Else restart is probably needed
     then
         break
