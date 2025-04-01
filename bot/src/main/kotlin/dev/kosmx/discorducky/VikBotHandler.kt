@@ -104,7 +104,6 @@ object VikBotHandler : EventListener {
                 GatewayIntent.GUILD_MESSAGE_REACTIONS)
             enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
             addEventListeners(this@VikBotHandler)
-            setMemberCachePolicy(MemberCachePolicy.ALL)
             setEnableShutdownHook(false)
         }.build()
         _jda = client
